@@ -55,37 +55,8 @@
     <canvas id="signature" width="600"></canvas>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
   <script>
     const signaturePad = new SignaturePad(document.getElementById("signature"));
-
-    firebase.initializeApp({
-      apiKey: "AIzaSyCKiugN1lmUx3a_9kxqYmfZtLkwLPMevtg",
-      authDomain: "tayto-38750.firebaseapp.com",
-      projectId: "tayto-38750",
-      storageBucket: "tayto-38750.appspot.com",
-      messagingSenderId: "1068319832604",
-      appId: "1:1068319832604:web:a8ba094e2ac580639bfdd9",
-      measurementId: "G-VHMTW02XQZ"
-    });
-    firebase.analytics();
-
-    const db = firebase.firestore();
-    const worksheets = db.collection("worksheets");
-
-    worksheets.get().then(it => it.docs.map(d => console.log(d.id)));
-
-    //worksheets.get().then(doc => {
-      //doc.forEach(line => {
-        //console.log(line.data())
-      //})
-    //});
-
-    //db.collection("worksheets").doc("test").set({ "yeah": "ok" });
-
-    // TODO: make total hours auto calculate from line
   </script>
 </body>
 
