@@ -7,16 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tayto Invoicing</title>
   <style>
-    main {
-      margin: auto;
+    body {
       text-align: center;
-    }
-
-    #signature {
-      border: 1px solid black;
-      display: block;
-      margin: auto;
-      padding: 0;
     }
 
     #clients {
@@ -33,72 +25,85 @@
 </head>
 
 <body>
-  <main>
-    <input type="text" name="" id="company" value="TAILORS CORNER - LEEDS">
-    <input type="date" name="" id="">
+  <h1 id="client">Company Name</h1>
+  <div id="lines"></div>
+  <button onclick="add_new_line()">Add New Line</button>
+  <div id="total">£50</div>
 
-    <div class="line-item">
-      <input type="text" name="" id="description" value="built a feckin outhouse">
-      <input type="text" name="" id="name" value="shane">
-      <input type="number" name="" id="mon" min="0" max="24" value="8">
-      <input type="number" name="" id="tue" min="0" max="24" value="8">
-      <input type="number" name="" id="wed" min="0" max="24" value="0">
-      <input type="number" name="" id="thu" min="0" max="24" value="0">
-      <input type="number" name="" id="fri" min="0" max="24" value="0">
-      <input type="number" name="" id="sat" min="0" max="24" value="0">
-      <input type="number" name="" id="sun" min="0" max="24" value="0">
-      <span id="total">16</span>
-      <input type="number" name="" id="rate" value="18.5">
-      <input type="text" name="" id="materials" value="a load of wood">
-      <input type="number" name="" id="cost" value="780">
-    </div>
+  <h1>Current Jobs</h1>
+  <div id="clients"></div>
+  <input id="new-client" />
+  <button onclick="add_new_client()">Add New Job</button>
 
-    <label for="total">Total £</label>
-    <input type="number" name="" id="total" value="750">
-
-    <div>
-      <label for="name">Name</label>
-      <input type="text" name="" id="name">
-    </div>
-
-    <canvas id="signature" width="600"></canvas>
-
-    <h1>Current Jobs</h1>
-    <div id="clients"></div>
-    <input id="new-client" />
-    <button onclick="add_new_client()">Add New Job</button>
-  </main>
-  <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
   <script>
-    const signaturePad = new SignaturePad(document.getElementById("signature"));
-
     // Initialise local storage
-    window.localStorage.clients = window.localStorage.clients || "[]";
+    window.localStorage.tayto = window.localStorage.tayto || JSON.stringify({ 'clients': {} });
+    const tayto = JSON.parse(window.localStorage.tayto);
 
     refresh_client_list();
+
+    function add_new_line() {
+      const client = document.getElementById("client").innerText;
+      tayto.clients[client].push(["test", 0, "wood"]);
+      save();
+      refresh_lines();
+    }
+
+    function delete_line(index) {
+      const client = document.getElementById("client").innerText;
+      tayto.clients[client].pop();
+      save();
+      refresh_lines();
+    }
+
+    function refresh_lines() {
+      const linesDiv = document.getElementById("lines");
+      linesDiv.innerHTML = ``;
+
+      const client = document.getElementById("client").innerText;
+      for (const line of tayto.clients[client]) {
+        linesDiv.innerHTML += `
+        <div>
+          <input               value="${line[0]}" />
+          <input type="number" value="${line[1]}" />
+          <input               value="${line[2]}" />
+          <button onclick="delete_line(0)">X</button>
+        </div>
+      `;
+      }
+    }
+
+    function open_client(id) {
+      const clientH1 = document.getElementById("client");
+      clientH1.innerText = id;
+      refresh_lines();
+    }
 
     function refresh_client_list() {
       const clientsDiv = document.getElementById("clients");
 
       clientsDiv.innerHTML = ``;
 
-      for (const client of JSON.parse(window.localStorage.clients)) {
-        clientsDiv.innerHTML += `<div class="client">${client} <button onclick="remove_client('${client}')">X</button></div>`;
+      for (const client in tayto.clients) {
+        clientsDiv.innerHTML += `<div onclick="open_client('${client}')" class="client">${client} <button onclick="remove_client('${client}')">X</button></div>`;
       }
     }
 
     function add_new_client() {
       const newClient = document.getElementById("new-client");
-      const clients = JSON.parse(window.localStorage.clients);
-      clients.push(newClient.value);
-      window.localStorage.clients = JSON.stringify(clients);
+      tayto.clients[newClient.value] = [];
+      save();
       refresh_client_list();
     }
 
     function remove_client(id) {
-      const clients = JSON.parse(window.localStorage.clients).filter(c => c != id);
-      window.localStorage.clients = JSON.stringify(clients);
+      delete tayto.clients[id];
+      save();
       refresh_client_list();
+    }
+
+    function save() {
+      window.localStorage.tayto = JSON.stringify(tayto);
     }
   </script>
 </body>
