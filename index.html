@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tayto Invoicing</title>
+  <style>
+    main {
+      width: 900px;
+      border: 1px solid red;
+      margin: auto;
+      text-align: center;
+    }
+
+    #signature {
+      border: 1px solid black;
+      display: block;
+      margin: auto;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <input type="text" name="" id="company" value="TAILORS CORNER - LEEDS">
+    <input type="date" name="" id="">
+
+    <div class="line-item">
+      <input type="text" name="" id="description" value="built a feckin outhouse">
+      <input type="text" name="" id="name" value="shane">
+      <input type="number" name="" id="mon" min="0" max="24" value="8">
+      <input type="number" name="" id="tue" min="0" max="24" value="8">
+      <input type="number" name="" id="wed" min="0" max="24" value="0">
+      <input type="number" name="" id="thu" min="0" max="24" value="0">
+      <input type="number" name="" id="fri" min="0" max="24" value="0">
+      <input type="number" name="" id="sat" min="0" max="24" value="0">
+      <input type="number" name="" id="sun" min="0" max="24" value="0">
+      <span id="total">16</span>
+      <input type="number" name="" id="rate" value="18.5">
+      <input type="text" name="" id="materials" value="a load of wood">
+      <input type="number" name="" id="cost" value="780">
+    </div>
+
+    <label for="total">Total £</label>
+    <input type="number" name="" id="total" value="750">
+
+    <div>
+      <label for="name">Name</label>
+      <input type="text" name="" id="name">
+    </div>
+
+    <canvas id="signature" width="600"></canvas>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-firestore.js"></script>
+  <script>
+    const signaturePad = new SignaturePad(document.getElementById("signature"));
+
+    firebase.initializeApp({
+      apiKey: "AIzaSyCKiugN1lmUx3a_9kxqYmfZtLkwLPMevtg",
+      authDomain: "tayto-38750.firebaseapp.com",
+      projectId: "tayto-38750",
+      storageBucket: "tayto-38750.appspot.com",
+      messagingSenderId: "1068319832604",
+      appId: "1:1068319832604:web:a8ba094e2ac580639bfdd9",
+      measurementId: "G-VHMTW02XQZ"
+    });
+    firebase.analytics();
+
+    const db = firebase.firestore();
+    const worksheets = db.collection("worksheets");
+
+    worksheets.get().then(it => it.docs.map(d => console.log(d.id)));
+
+    //worksheets.get().then(doc => {
+      //doc.forEach(line => {
+        //console.log(line.data())
+      //})
+    //});
+
+    //db.collection("worksheets").doc("test").set({ "yeah": "ok" });
+
+    // TODO: make total hours auto calculate from line
+  </script>
+</body>
+
+</html>
