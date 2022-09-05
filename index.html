@@ -61,16 +61,28 @@
       linesDiv.innerHTML = ``;
 
       const client = document.getElementById("client").innerText;
-      for (const line of tayto.clients[client]) {
+      for (const [i, line] of tayto.clients[client].entries()) {
         linesDiv.innerHTML += `
         <div>
-          <input               value="${line[0]}" />
-          <input type="number" value="${line[1]}" />
-          <input               value="${line[2]}" />
-          <button onclick="delete_line(0)">X</button>
+          <input type="text"   value="${line[0]}" oninput="update_lines()" />
+          <input type="number" value="${line[1]}" oninput="update_lines()" />
+          <input type="text"   value="${line[2]}" oninput="update_lines()" />
+          <button onclick="delete_line(${i})">X</button>
         </div>
       `;
       }
+    }
+
+    function update_lines() {
+      const client = document.getElementById("client").innerText;
+      const linesDiv = document.getElementById("lines");
+      for (let index = 0; index < linesDiv.children.length; index++) {
+        const line = linesDiv.children[index];
+        tayto.clients[client][index][0] = line.children[0].value;
+        tayto.clients[client][index][1] = line.children[1].value;
+        tayto.clients[client][index][2] = line.children[2].value;
+      }
+      save();
     }
 
     function open_client(id) {
