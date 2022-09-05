@@ -8,8 +8,6 @@
   <title>Tayto Invoicing</title>
   <style>
     main {
-      width: 900px;
-      border: 1px solid red;
       margin: auto;
       text-align: center;
     }
@@ -19,6 +17,17 @@
       display: block;
       margin: auto;
       padding: 0;
+    }
+
+    #clients {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .client {
+      border: 1px solid black;
+      height: 50px;
     }
   </style>
 </head>
@@ -53,10 +62,44 @@
     </div>
 
     <canvas id="signature" width="600"></canvas>
+
+    <h1>Current Jobs</h1>
+    <div id="clients"></div>
+    <input id="new-client" />
+    <button onclick="add_new_client()">Add New Job</button>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
   <script>
     const signaturePad = new SignaturePad(document.getElementById("signature"));
+
+    // Initialise local storage
+    window.localStorage.clients = window.localStorage.clients || "[]";
+
+    refresh_client_list();
+
+    function refresh_client_list() {
+      const clientsDiv = document.getElementById("clients");
+
+      clientsDiv.innerHTML = ``;
+
+      for (const client of JSON.parse(window.localStorage.clients)) {
+        clientsDiv.innerHTML += `<div class="client">${client} <button onclick="remove_client('${client}')">X</button></div>`;
+      }
+    }
+
+    function add_new_client() {
+      const newClient = document.getElementById("new-client");
+      const clients = JSON.parse(window.localStorage.clients);
+      clients.push(newClient.value);
+      window.localStorage.clients = JSON.stringify(clients);
+      refresh_client_list();
+    }
+
+    function remove_client(id) {
+      const clients = JSON.parse(window.localStorage.clients).filter(c => c != id);
+      window.localStorage.clients = JSON.stringify(clients);
+      refresh_client_list();
+    }
   </script>
 </body>
 
