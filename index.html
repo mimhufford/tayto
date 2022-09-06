@@ -100,8 +100,10 @@
     }
 
     function add_new_client() {
-      const newClient = document.getElementById("new-client").value.trim();
-      tayto.clients[newClient] = [];
+      const input = document.getElementById("new-client");
+      const newClient = input.value.trim();
+      input.value = "";
+      if (newClient in tayto.clients == false) tayto.clients[newClient] = [];
       open_client(newClient);
       save();
       refresh_client_list();
