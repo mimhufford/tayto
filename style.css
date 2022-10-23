@@ -65,3 +65,7 @@ button, input {
 .no_button {
     background-color: pink;
 }
+
+#lines .line .line_hours {
+    width: 2em;
+}
