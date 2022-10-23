@@ -6,13 +6,17 @@ refresh_client_list();
 open_client(tayto.activeClient);
 
 function add_new_line() {
-    tayto.clients[tayto.activeClient].push(["test", 0, "wood"]);
+    tayto.clients[tayto.activeClient].push({
+        description : "",
+        person : "",
+        monday: 0,
+    });
     save();
     refresh_lines();
 }
 
 function delete_line(index) {
-    tayto.clients[tayto.activeClient].pop();
+    tayto.clients[tayto.activeClient].splice(index, 1);
     save();
     refresh_lines();
 }
@@ -24,10 +28,9 @@ function refresh_lines() {
     for (const [i, line] of tayto.clients[tayto.activeClient].entries()) {
         linesDiv.innerHTML += `
         <div>
-          <input type="text"   value="${line[0]}" oninput="update_lines()" />
-          <input type="text"   value="person"     oninput="update_lines()" />
-          <input type="number" value="${line[1]}" oninput="update_lines()" />
-          <input type="text"   value="${line[2]}" oninput="update_lines()" />
+          <input type="text"   value="${line.description}" oninput="update_lines()" />
+          <input type="text"   value="${line.person}"      oninput="update_lines()" />
+          <input type="number" value="${line.monday}"      oninput="update_lines()" />
           <button onclick="delete_line(${i})">X</button>
         </div>
       `;
@@ -38,9 +41,9 @@ function update_lines() {
     const linesDiv = document.getElementById("lines");
     for (let index = 0; index < linesDiv.children.length; index++) {
         const line = linesDiv.children[index];
-        tayto.clients[tayto.activeClient][index][0] = line.children[0].value;
-        tayto.clients[tayto.activeClient][index][1] = line.children[1].value;
-        tayto.clients[tayto.activeClient][index][2] = line.children[2].value;
+        tayto.clients[tayto.activeClient][index].description = line.children[0].value;
+        tayto.clients[tayto.activeClient][index].person      = line.children[1].value;
+        tayto.clients[tayto.activeClient][index].monday      = line.children[2].value;
     }
     save();
 }
