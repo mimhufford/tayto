@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tayto Invoicing</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://css.gg/add.css">
 </head>
 
 <body>
@@ -16,6 +17,14 @@
 
   <h1>Active Jobs</h1>
   <div id="client_list"></div>
+
+  <div id="new_client_container">
+    <div id="new_client_form">
+      <input type="text" name="new_client" id="new_client">
+      <button onclick="add_new_client()">Add New Job</button>
+      <button onclick="close_add_new_client_window()">Cancel</button>
+    </div>
+  </div>
 
   <script src="tayto.js"></script>
 </body>

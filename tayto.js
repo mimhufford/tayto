@@ -62,22 +62,28 @@ function refresh_client_list() {
         clientsDiv.innerHTML += `<div onclick="open_client('${client}')" class="client_list_client ${active}">${client}</div>`;
     }
 
-    clientsDiv.innerHTML += `
-        <div class="client_list_client">
-            <input id="new-client" />
-            <button onclick="add_new_client()">Add New Job</button>
-        </div>
-    `;
+    clientsDiv.innerHTML += `<div class="client_list_client" onclick="open_add_new_client_window()"><i class="gg-add"></i></div>`;
+}
+
+function open_add_new_client_window() {
+    const newClientWindow = document.getElementById("new_client_container");
+    newClientWindow.style.display = "flex";
+}
+
+function close_add_new_client_window() {
+    const newClientWindow = document.getElementById("new_client_container");
+    newClientWindow.style.display = "none";
 }
 
 function add_new_client() {
-    const input = document.getElementById("new-client");
+    const input = document.getElementById("new_client");
     const newClient = input.value.trim();
     input.value = "";
     if (newClient in tayto.clients == false) tayto.clients[newClient] = [];
     open_client(newClient);
     save();
     refresh_client_list();
+    close_add_new_client_window();
 }
 
 function remove_client(id) {
