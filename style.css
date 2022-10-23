@@ -13,9 +13,8 @@ body {
 .client_list_client {
     border: 1px solid #ddd;
     background-color: #f5f5fa;
-    width: 25vw;
-    height: 10vw;
     display: flex;
+    padding: 2vw;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
