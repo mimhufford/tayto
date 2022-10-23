@@ -32,15 +32,15 @@ function refresh_lines() {
     for (const [i, line] of tayto.clients[tayto.activeClient].entries()) {
         linesDiv.innerHTML += `
         <div class="line">
-          <input class="line_descn"  type="text"   value="${line.description}"                         oninput="update_lines()" />
-          <input class="line_person" type="text"   value="${line.person}"                              oninput="update_lines()" />
-          <input class="line_hours"  type="number" value="${line.hours[0]}"    onClick="this.select()" oninput="update_lines()" />
-          <input class="line_hours"  type="number" value="${line.hours[1]}"    onClick="this.select()" oninput="update_lines()" />
-          <input class="line_hours"  type="number" value="${line.hours[2]}"    onClick="this.select()" oninput="update_lines()" />
-          <input class="line_hours"  type="number" value="${line.hours[3]}"    onClick="this.select()" oninput="update_lines()" />
-          <input class="line_hours"  type="number" value="${line.hours[4]}"    onClick="this.select()" oninput="update_lines()" />
-          <input class="line_hours"  type="number" value="${line.hours[5]}"    onClick="this.select()" oninput="update_lines()" />
-          <input class="line_hours"  type="number" value="${line.hours[6]}"    onClick="this.select()" oninput="update_lines()" />
+          <input class="line_description"  type="text"   value="${line.description}" placeholder="Description of work" oninput="update_lines()" />
+          <input class="line_person"       type="text"   value="${line.person}"      placeholder="Who did the work?"   oninput="update_lines()" />
+          <input class="line_hours"        type="number" value="${line.hours[0]}"    onClick="this.select()" oninput="update_lines()" />
+          <input class="line_hours"        type="number" value="${line.hours[1]}"    onClick="this.select()" oninput="update_lines()" />
+          <input class="line_hours"        type="number" value="${line.hours[2]}"    onClick="this.select()" oninput="update_lines()" />
+          <input class="line_hours"        type="number" value="${line.hours[3]}"    onClick="this.select()" oninput="update_lines()" />
+          <input class="line_hours"        type="number" value="${line.hours[4]}"    onClick="this.select()" oninput="update_lines()" />
+          <input class="line_hours"        type="number" value="${line.hours[5]}"    onClick="this.select()" oninput="update_lines()" />
+          <input class="line_hours"        type="number" value="${line.hours[6]}"    onClick="this.select()" oninput="update_lines()" />
           <button onclick="delete_line(${i})">X</button>
         </div>
       `;

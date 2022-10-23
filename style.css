@@ -66,6 +66,20 @@ button, input {
     background-color: pink;
 }
 
-#lines .line .line_hours {
-    width: 2em;
+#lines .line {
+    margin: 2vw auto 5vw auto;
+    padding-top: 1vw;
+    padding-bottom: 0.5vw;
+    background-color: #f1f1f1;
+}
+
+#lines .line_description,
+.line_person {
+    display: block;
+    width: 90vw;
+    margin: 1vh auto;
+}
+
+#lines .line_hours {
+    width: 1em;
 }
