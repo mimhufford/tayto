@@ -1,11 +1,11 @@
-* {
-    padding: 0;
-    margin: 0;
-}
-
 body {
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button, input {
+    padding: 1vw;
+    margin: 0.5vw;
 }
 
 #client_list {
@@ -37,7 +37,7 @@ body {
 
 #new_client_container {
     position: absolute;
-    background-color: #ffffffee;
+    background-color: #f5f5f5ee;
     top: 0;
     left: 0;
     width: 100%;
@@ -45,4 +45,19 @@ body {
     display: none; /* toggles between flex/none via code */
     align-items: center;
     justify-content: center;
+}
+
+#new_client_form {
+    padding: 2vw;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+.yes_button {
+    background-color: lightgreen;
+}
+
+.no_button {
+    background-color: pink;
 }

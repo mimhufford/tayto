@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tayto Invoicing</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://css.gg/add.css">
 </head>
@@ -20,9 +21,10 @@
 
   <div id="new_client_container">
     <div id="new_client_form">
-      <input type="text" name="new_client" id="new_client">
-      <button onclick="add_new_client()">Add New Job</button>
-      <button onclick="close_add_new_client_window()">Cancel</button>
+      <h1>Start a new contract</h1>
+      <input type="text" name="new_client" id="new_client" placeholder="Client Name">
+      <button class="yes_button" onclick="add_new_client()">Add</button>
+      <button class="no_button" onclick="close_add_new_client_window()">Cancel</button>
     </div>
   </div>
 

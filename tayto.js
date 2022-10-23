@@ -25,6 +25,7 @@ function refresh_lines() {
         linesDiv.innerHTML += `
         <div>
           <input type="text"   value="${line[0]}" oninput="update_lines()" />
+          <input type="text"   value="person"     oninput="update_lines()" />
           <input type="number" value="${line[1]}" oninput="update_lines()" />
           <input type="text"   value="${line[2]}" oninput="update_lines()" />
           <button onclick="delete_line(${i})">X</button>
