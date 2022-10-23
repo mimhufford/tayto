@@ -1,0 +1,14 @@
+body {
+    text-align: center;
+}
+
+#clients {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.client {
+    border: 1px solid black;
+    height: 50px;
+}
