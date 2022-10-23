@@ -14,6 +14,7 @@
 
 <body>
   <h1 id="selected_client">Company Name</h1>
+  <p id="disclaimer">All hours claimed have been deducted for ALL rest and lunch periods.</p>
   <div id="lines"></div>
   <div class="do_not_print">
     <button onclick="add_new_line()">Add new item</button>
@@ -21,12 +22,12 @@
   </div>
 
   <div id="active_jobs">
-    <h1>Active Jobs</h1>
+    <h1>Active Worksheets</h1>
     <div id="client_list"></div>
 
     <div id="new_client_container">
       <div id="new_client_form">
-        <h1>Start a new contract</h1>
+        <h1>Start a new worksheet</h1>
         <input type="text" name="new_client" id="new_client" placeholder="Client Name">
         <button class="yes_button" onclick="add_new_client()">Add</button>
         <button class="no_button" onclick="close_add_new_client_window()">Cancel</button>

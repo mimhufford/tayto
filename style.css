@@ -8,6 +8,10 @@ button, input {
     margin: 0.5vw;
 }
 
+#disclaimer {
+    display: none;
+}
+
 #client_list {
     display: flex;
     flex-wrap: wrap;
