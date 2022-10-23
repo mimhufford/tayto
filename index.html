@@ -6,25 +6,31 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tayto Invoicing</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
   <link rel="stylesheet" href="https://css.gg/add.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="print.css" media="print">
 </head>
 
 <body>
   <h1 id="selected_client">Company Name</h1>
   <div id="lines"></div>
-  <button onclick="add_new_line()">Add New Line</button>
+  <div class="do_not_print">
+    <button onclick="add_new_line()">Add new item</button>
+    <button onclick="window.print()">Print</button>
+  </div>
 
-  <h1>Active Jobs</h1>
-  <div id="client_list"></div>
+  <div id="active_jobs">
+    <h1>Active Jobs</h1>
+    <div id="client_list"></div>
 
-  <div id="new_client_container">
-    <div id="new_client_form">
-      <h1>Start a new contract</h1>
-      <input type="text" name="new_client" id="new_client" placeholder="Client Name">
-      <button class="yes_button" onclick="add_new_client()">Add</button>
-      <button class="no_button" onclick="close_add_new_client_window()">Cancel</button>
+    <div id="new_client_container">
+      <div id="new_client_form">
+        <h1>Start a new contract</h1>
+        <input type="text" name="new_client" id="new_client" placeholder="Client Name">
+        <button class="yes_button" onclick="add_new_client()">Add</button>
+        <button class="no_button" onclick="close_add_new_client_window()">Cancel</button>
+      </div>
     </div>
   </div>
 
