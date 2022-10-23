@@ -45,20 +45,29 @@ function update_lines() {
 }
 
 function open_client(id) {
-    document.getElementById("client").innerText = id;
+    document.getElementById("selected_client").innerText = id;
     tayto.activeClient = id;
     save();
+    refresh_client_list();
     refresh_lines();
 }
 
 function refresh_client_list() {
-    const clientsDiv = document.getElementById("clients");
+    const clientsDiv = document.getElementById("client_list");
 
     clientsDiv.innerHTML = ``;
 
     for (const client in tayto.clients) {
-        clientsDiv.innerHTML += `<div onclick="open_client('${client}')" class="client">${client} <button onclick="remove_client('${client}')">X</button></div>`;
+        active = tayto.activeClient == client ? "active" : "";
+        clientsDiv.innerHTML += `<div onclick="open_client('${client}')" class="client_list_client ${active}">${client}</div>`;
     }
+
+    clientsDiv.innerHTML += `
+        <div class="client_list_client">
+            <input id="new-client" />
+            <button onclick="add_new_client()">Add New Job</button>
+        </div>
+    `;
 }
 
 function add_new_client() {

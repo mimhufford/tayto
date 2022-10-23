@@ -1,14 +1,31 @@
 body {
     text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#clients {
+#client_list {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    gap: 1vw;
 }
 
-.client {
-    border: 1px solid black;
-    height: 50px;
+.client_list_client {
+    border: 1px solid #ddd;
+    background-color: #f5f5fa;
+    width: 25vw;
+    height: 10vw;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.client_list_client:hover {
+    border: 1px solid #aaa;
+    background-color: #f8f8ff;
+}
+
+.client_list_client.active {
+    background-color: #fff;
 }
